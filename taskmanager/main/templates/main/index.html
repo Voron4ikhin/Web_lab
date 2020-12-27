@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="test1">Заметки:</h1>
+    {% if tasks %}
+        {% for el in tasks %}
+            <div class="div_tasks">
+                <div class="div_one_task">
+                    <h3 class="h3_title">{{ el.title }}</h3>
+                    <div>
+                        <form method="post" action="{% url 'detail_task' el.id %}">
+                            {% csrf_token %}
+                            <button type = 'submit' class="task_button">Выполнено</button>
+                        </form>
+                    </div>
+                </div>
+                <p class="p_task">{{ el.task }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+<p class="p_no_task">У нас нет записей. Чтобы создать свою заметку, перейдите на вкладку <a class="link_on_create" href="{% url 'create' %}">cоздать задачу</a></p>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Обратная связь
+{% endblock %}
+
+{% block content %}
+    <div class="center_review">
+        <h2>Обратная связь</h2>
+        <form method="post" class="review">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type = 'submit' class="button1">Отправить</button>
+        </form>
+    </div>
+{% endblock %}
